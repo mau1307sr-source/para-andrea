@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#080307">
+
+    <title>Para Andrea ♡</title>
+
+    <style>
+
+        /* =========================================
+           CONFIGURACIÓN GENERAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-height: 100dvh;
+            overflow: hidden;
+
+            background: #080307;
+
+            color: white;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* =========================================
+           FONDO
+        ========================================= */
+
+        .fondo {
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    #35121f 0%,
+                    #190810 42%,
+                    #080307 78%
+                );
+
+            z-index: -10;
+        }
+
+
+        /* =========================================
+           BRILLO DECORATIVO
+        ========================================= */
+
+        .brillo {
+            position: fixed;
+
+            width: 280px;
+            height: 280px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 105, 155, 0.09),
+                    transparent 70%
+                );
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -5;
+        }
+
+
+        /* =========================================
+           ESTRELLAS
+        ========================================= */
+
+        .estrella {
+            position: fixed;
+
+            width: 2px;
+            height: 2px;
+
+            background: #fff;
+
+            border-radius: 50%;
+
+            opacity: 0.4;
+
+            box-shadow:
+                0 0 5px rgba(255,255,255,.8);
+
+            pointer-events: none;
+
+            animation:
+                parpadearEstrella 3s
+                ease-in-out infinite alternate;
+
+            will-change:
+                transform,
+                opacity;
+        }
+
+
+        @keyframes parpadearEstrella {
+
+            from {
+                opacity: .2;
+
+                transform:
+                    scale(.8);
+            }
+
+            to {
+                opacity: .85;
+
+                transform:
+                    scale(1.25);
+            }
+
+        }
+
+
+        /* =========================================
+           ESCENA PRINCIPAL
+        ========================================= */
+
+        #escena {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding:
+                max(25px, env(safe-area-inset-top))
+                25px
+                max(25px, env(safe-area-inset-bottom));
+
+            text-align: center;
+
+            z-index: 10;
+        }
+
+
+        #frase {
+            width: 100%;
+            max-width: 650px;
+
+            font-size: clamp(
+                22px,
+                4vw,
+                34px
+            );
+
+            line-height: 1.65;
+
+            color: #ffe4ed;
+
+            text-shadow:
+                0 0 15px
+                rgba(255, 160, 190, .25);
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+
+            will-change:
+                opacity,
+                transform;
+        }
+
+
+        #frase.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        #frase.oculta {
+
+            opacity: 0;
+
+            transform:
+                translateY(-12px);
+
+        }
+
+
+        /* =========================================
+           PALABRAS DESTACADAS
+        ========================================= */
+
+        .rosa {
+            color: #ff9fbd;
+
+            text-shadow:
+                0 0 14px
+                rgba(255, 120, 170, .45);
+        }
+
+
+        .corazonTexto {
+            color: #ff8fb5;
+        }
+
+
+        /* =========================================
+           ESCENA FINAL
+        ========================================= */
+
+        #final {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            text-align: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 2s ease;
+
+            z-index: 20;
+        }
+
+
+        #final.visible {
+
+            opacity: 1;
+            visibility: visible;
+
+        }
+
+
+        .contenidoFinal {
+
+            width: 100%;
+            max-width: 600px;
+
+        }
+
+
+        /* =========================================
+           CORAZÓN PRINCIPAL
+        ========================================= */
+
+        .contenedorCorazon {
+
+            height: 170px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+        .corazon {
+
+            position: relative;
+
+            width: 100px;
+            height: 100px;
+
+            background: #ff6699;
+
+            transform:
+                rotate(-45deg);
+
+            animation:
+                latido 1.15s
+                ease-in-out infinite;
+
+            box-shadow:
+
+                0 0 20px #ff6699,
+
+                0 0 50px
+                rgba(255,102,153,.55),
+
+                0 0 90px
+                rgba(255,102,153,.25);
+
+            will-change: transform;
+
+        }
+
+
+        .corazon::before,
+        .corazon::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            background: #ff6699;
+
+            border-radius: 50%;
+
+        }
+
+
+        .corazon::before {
+
+            top: -50px;
+            left: 0;
+
+        }
+
+
+        .corazon::after {
+
+            top: 0;
+            left: 50px;
+
+        }
+
+
+        @keyframes latido {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-45deg)
+                    scale(1);
+
+            }
+
+
+            15% {
+
+                transform:
+                    rotate(-45deg)
+                    scale(1.12);
+
+            }
+
+
+            30% {
+
+                transform:
+                    rotate(-45deg)
+                    scale(1);
+
+            }
+
+
+            45% {
+
+                transform:
+                    rotate(-45deg)
+                    scale(1.07);
+
+            }
+
+        }
+
+
+        /* =========================================
+           NOMBRE
+        ========================================= */
+
+        .nombre {
+
+            margin-top: 15px;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size:
+                clamp(
+                    30px,
+                    7vw,
+                    48px
+                );
+
+            color: #ffd6e4;
+
+            text-shadow:
+
+                0 0 15px
+                rgba(255,214,228,.4),
+
+                0 0 30px
+                rgba(255,102,153,.25);
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+        }
+
+
+        #final.visible .nombre {
+
+            animation:
+                aparecerFinal
+                1.5s ease
+                .6s forwards;
+
+        }
+
+
+        /* =========================================
+           MENSAJE FINAL
+        ========================================= */
+
+        .mensajeFinal {
+
+            margin-top: 18px;
+
+            font-size:
+                clamp(
+                    18px,
+                    4vw,
+                    23px
+                );
+
+            line-height: 1.7;
+
+            color: #fff4f7;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+        }
+
+
+        #final.visible
+        .mensajeFinal {
+
+            animation:
+                aparecerFinal
+                1.5s ease
+                1.5s forwards;
+
+        }
+
+
+        @keyframes aparecerFinal {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================================
+           CORAZONES FLOTANTES
+        ========================================= */
+
+        .corazonFlotante {
+
+            position: fixed;
+
+            bottom: -30px;
+
+            color: #ff8fb5;
+
+            pointer-events: none;
+
+            z-index: 15;
+
+            opacity: 0;
+
+            animation:
+                subirCorazon
+                linear forwards;
+
+            will-change:
+                transform,
+                opacity;
+
+        }
+
+
+        @keyframes subirCorazon {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translate3d(
+                        0,
+                        0,
+                        0
+                    )
+                    rotate(0deg);
+
+            }
+
+
+            15% {
+
+                opacity: .7;
+
+            }
+
+
+            80% {
+
+                opacity: .5;
+
+            }
+
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translate3d(
+                        0,
+                        -110vh,
+                        0
+                    )
+                    rotate(180deg);
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULARES
+        ========================================= */
+
+        @media
+        (max-width: 600px) {
+
+
+            #escena {
+
+                padding:
+                    30px
+                    24px;
+
+            }
+
+
+            #frase {
+
+                max-width: 350px;
+
+                font-size: 21px;
+
+                line-height: 1.65;
+
+            }
+
+
+            .contenedorCorazon {
+
+                height: 145px;
+
+            }
+
+
+            .corazon {
+
+                width: 85px;
+                height: 85px;
+
+            }
+
+
+            .corazon::before,
+            .corazon::after {
+
+                width: 85px;
+                height: 85px;
+
+            }
+
+
+            .corazon::before {
+
+                top: -42.5px;
+
+            }
+
+
+            .corazon::after {
+
+                left: 42.5px;
+
+            }
+
+
+            .nombre {
+
+                font-size: 32px;
+
+                margin-top: 10px;
+
+            }
+
+
+            .mensajeFinal {
+
+                font-size: 18px;
+
+                line-height: 1.65;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULARES PEQUEÑOS
+        ========================================= */
+
+        @media
+        (max-height: 650px) {
+
+
+            #frase {
+
+                font-size: 18px;
+
+            }
+
+
+            .contenedorCorazon {
+
+                height: 120px;
+
+            }
+
+
+            .corazon {
+
+                transform:
+                    rotate(-45deg)
+                    scale(.8);
+
+            }
+
+
+            .nombre {
+
+                font-size: 28px;
+
+            }
+
+
+            .mensajeFinal {
+
+                font-size: 16px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- FONDO -->
+
+    <div class="fondo"></div>
+
+    <div class="brillo"></div>
+
+
+    <!-- =====================================
+         FRASES
+    ====================================== -->
+
+    <section id="escena">
+
+        <div id="frase"></div>
+
+    </section>
+
+
+    <!-- =====================================
+         FINAL
+    ====================================== -->
+
+    <section id="final">
+
+        <div class="contenidoFinal">
+
+
+            <div class="contenedorCorazon">
+
+                <div class="corazon"></div>
+
+            </div>
+
+
+            <h1 class="nombre">
+
+                Andrea Betzabeth ♡
+
+            </h1>
+
+
+            <div class="mensajeFinal">
+
+                Empecé queriendo conocerte
+
+                <br>
+
+                y terminé queriendo
+
+                <br>
+
+                que te quedaras.
+
+                <br><br>
+
+                Gracias por dejarme
+
+                <br>
+
+                ser tu novio.
+
+                <span class="corazonTexto">
+                    ♡
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+<script>
+
+
+/* =========================================
+   DETECTAR CELULAR
+========================================= */
+
+const esCelular =
+    window.innerWidth <= 600;
+
+
+
+/* =========================================
+   CREAR ESTRELLAS
+========================================= */
+
+function crearEstrellas() {
+
+
+    /*
+        En celular usamos menos estrellas
+        para mejorar el rendimiento.
+    */
+
+    const cantidad =
+        esCelular ? 35 : 80;
+
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+
+        const estrella =
+            document.createElement(
+                "div"
+            );
+
+
+        estrella.className =
+            "estrella";
+
+
+        estrella.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        estrella.style.top =
+            Math.random() *
+            100 +
+            "vh";
+
+
+        const tamaño =
+            Math.random() *
+            2 +
+            1;
+
+
+        estrella.style.width =
+            tamaño +
+            "px";
+
+
+        estrella.style.height =
+            tamaño +
+            "px";
+
+
+        estrella.style.animationDelay =
+            Math.random() *
+            3 +
+            "s";
+
+
+        estrella.style.animationDuration =
+            (
+                Math.random() *
+                2 +
+                2
+            ) +
+            "s";
+
+
+        document.body.appendChild(
+            estrella
+        );
+
+    }
+
+}
+
+
+crearEstrellas();
+
+
+
+/* =========================================
+   FRASES
+========================================= */
+
+/*
+
+Cada elemento representa
+UNA escena.
+
+Puedes cambiar cualquier frase
+sin tocar el resto del código.
+
+*/
+
+const frases = [
+
+
+    `Hay tantas personas
+    en el mundo...`,
+
+
+    `y entre todas ellas,
+    tuve la suerte de
+    <span class="rosa">
+        encontrarte a ti.
+    </span> ♡`,
+
+
+    `Al principio
+    me llamaron la atención
+    <span class="rosa">
+        tus ojitos...
+    </span>`,
+
+
+    `después descubrí
+    tu sonrisa. ♡`,
+
+
+    `Y mientras más
+    te conocía...`,
+
+
+    `más cosas encontraba
+    para querer de ti.`,
+
+
+    `Me gusta escucharte.
+
+    <br><br>
+
+    Me gusta hacerte reír.`,
+
+
+    `Me gusta tenerte
+    cerquita. ♡`,
+
+
+    `Y aunque me pongas
+    nervioso cuando
+    te quedas mirándome...`,
+
+
+    `la verdad es que
+    nunca quisiera que
+    dejaras de hacerlo. ♡`,
+
+
+    `Qué bonito fue
+    encontrarte
+
+    <br>
+
+    sin estar buscándote.`,
+
+
+    `Y todavía más bonito...
+
+    <br><br>
+
+    <span class="rosa">
+        saber que ahora
+        somos nosotros.
+    </span> ♡`
+
+];
+
+
+
+/* =========================================
+   ELEMENTOS
+========================================= */
+
+const escena =
+    document.getElementById(
+        "escena"
+    );
+
+
+const frase =
+    document.getElementById(
+        "frase"
+    );
+
+
+const final =
+    document.getElementById(
+        "final"
+    );
+
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let indice = 0;
+
+
+/*
+
+Tiempo que permanece
+cada frase en pantalla.
+
+*/
+
+const tiempoVisible = 3200;
+
+
+/*
+
+Tiempo de transición
+entre frases.
+
+*/
+
+const tiempoTransicion = 1200;
+
+
+
+/* =========================================
+   MOSTRAR FRASES
+========================================= */
+
+function mostrarFrase() {
+
+
+    if (
+        indice >=
+        frases.length
+    ) {
+
+
+        terminarHistoria();
+
+        return;
+
+    }
+
+
+    /*
+        Colocamos la frase
+    */
+
+    frase.innerHTML =
+        frases[indice];
+
+
+    /*
+        La hacemos aparecer
+    */
+
+    frase.classList.remove(
+        "oculta"
+    );
+
+
+    requestAnimationFrame(
+        () => {
+
+            frase.classList.add(
+                "visible"
+            );
+
+        }
+    );
+
+
+    /*
+        Esperamos unos segundos
+    */
+
+    setTimeout(
+        () => {
+
+
+            /*
+                Desaparece
+            */
+
+            frase.classList.remove(
+                "visible"
+            );
+
+
+            frase.classList.add(
+                "oculta"
+            );
+
+
+            /*
+                Esperamos la transición
+            */
+
+            setTimeout(
+                () => {
+
+
+                    indice++;
+
+
+                    mostrarFrase();
+
+
+                },
+                tiempoTransicion
+            );
+
+
+        },
+        tiempoVisible
+    );
+
+}
+
+
+
+/* =========================================
+   INICIAR
+========================================= */
+
+setTimeout(
+    mostrarFrase,
+    1000
+);
+
+
+
+/* =========================================
+   TERMINAR HISTORIA
+========================================= */
+
+function terminarHistoria() {
+
+
+    escena.style.transition =
+        "opacity 1.5s ease";
+
+
+    escena.style.opacity =
+        "0";
+
+
+    setTimeout(
+        () => {
+
+
+            escena.style.display =
+                "none";
+
+
+            mostrarFinal();
+
+
+        },
+        1600
+    );
+
+}
+
+
+
+/* =========================================
+   MOSTRAR FINAL
+========================================= */
+
+function mostrarFinal() {
+
+
+    final.classList.add(
+        "visible"
+    );
+
+
+    iniciarCorazones();
+
+}
+
+
+
+/* =========================================
+   CREAR CORAZÓN FLOTANTE
+========================================= */
+
+function crearCorazonFlotante() {
+
+
+    const corazon =
+        document.createElement(
+            "div"
+        );
+
+
+    corazon.className =
+        "corazonFlotante";
+
+
+    const simbolos = [
+
+        "♡",
+        "♡",
+        "♡",
+        "♥"
+
+    ];
+
+
+    corazon.textContent =
+
+        simbolos[
+
+            Math.floor(
+
+                Math.random() *
+                simbolos.length
+
+            )
+
+        ];
+
+
+    /*
+        Posición horizontal
+    */
+
+    corazon.style.left =
+
+        Math.random() *
+        100 +
+        "vw";
+
+
+    /*
+        Tamaño
+    */
+
+    corazon.style.fontSize =
+
+        (
+            Math.random() *
+            13 +
+            10
+        ) +
+
+        "px";
+
+
+    /*
+        Velocidad
+    */
+
+    corazon.style.animationDuration =
+
+        (
+            Math.random() *
+            3 +
+            6
+        ) +
+
+        "s";
+
+
+    document.body.appendChild(
+        corazon
+    );
+
+
+    /*
+        Eliminamos el corazón
+        después de la animación
+    */
+
+    setTimeout(
+        () => {
+
+            corazon.remove();
+
+        },
+        9500
+    );
+
+}
+
+
+
+/* =========================================
+   INICIAR CORAZONES
+========================================= */
+
+let intervaloCorazones;
+
+
+function iniciarCorazones() {
+
+
+    /*
+        En celular salen menos.
+    */
+
+    const frecuencia =
+        esCelular
+            ? 650
+            : 300;
+
+
+    intervaloCorazones =
+        setInterval(
+
+            crearCorazonFlotante,
+
+            frecuencia
+
+        );
+
+}
+
+
+
+/* =========================================
+   PAUSAR ANIMACIONES SI CAMBIA DE PESTAÑA
+========================================= */
+
+/*
+
+Esto ayuda especialmente
+en celulares.
+
+*/
+
+document.addEventListener(
+
+    "visibilitychange",
+
+    () => {
+
+
+        if (
+            document.hidden &&
+            intervaloCorazones
+        ) {
+
+
+            clearInterval(
+                intervaloCorazones
+            );
+
+
+            intervaloCorazones =
+                null;
+
+        }
+
+
+        else if (
+            !document.hidden &&
+            final.classList.contains(
+                "visible"
+            ) &&
+            !intervaloCorazones
+        ) {
+
+
+            iniciarCorazones();
+
+        }
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+</html>
